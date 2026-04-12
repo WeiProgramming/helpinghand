@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { createTrade } from "../../../lib/actions/create-trade";
+
 
 export type TradeObj = {
     ticker: string,
@@ -10,6 +12,7 @@ export type TradeObj = {
     setup: string,
     timeframe: string,
     emotion: string,
+    direction: string,
     notes: string
 }
 
@@ -22,12 +25,17 @@ export default function TradeForm() {
         setup: "",
         timeframe: "",
         emotion: "",
+        direction: "",
         notes: ""
     };
 
     const [tradeDetail, setTradeDetail] = useState<TradeObj>({
         ...defaultTrade
     });
+
+    const newTrade = async () => {
+       await createTrade(tradeDetail);
+    }
 
     const clearForm = () => {
         setTradeDetail(defaultTrade);
@@ -70,6 +78,18 @@ export default function TradeForm() {
                     </select>
                 </label>
                 <label>
+                    Direction:
+                    <select name="Direction"  onChange={e => {
+                setTradeDetail((prev) => {
+                    return {...prev, direction: e.target.value}
+                })
+            }}>
+                        <option value="down">Downtrend</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="up">Uptren</option>
+                    </select>
+                </label>
+                <label>
                     Timeframe:
                     <select name="timeframe"  onChange={e => {
                 setTradeDetail((prev) => {
@@ -103,7 +123,7 @@ export default function TradeForm() {
                 })
             }}/>
             <div className="flex flex-row gap-6">
-                <button onClick={e => {e.preventDefault()}}>Submit</button>
+                <button onClick={e => {e.preventDefault(); newTrade()}}>Submit</button>
                 <button onClick={(e) => {clearForm()}}>Clear</button>
             </div>
 

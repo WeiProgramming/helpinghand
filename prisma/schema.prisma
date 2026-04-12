@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Trade {
+  id            String   @id @default(cuid())
+  ticker        String
+  date          DateTime @default(now())
+  direction     String?
+  entry         Float?
+  exit          Float?
+  stop          Float?
+  target        Float?
+  size          Float?
+  timeframe     String?
+  setup         String?
+  emotion       String?
+  notes         String?
+  screenshotUrl String?
+  createdAt     DateTime @default(now())
+}
