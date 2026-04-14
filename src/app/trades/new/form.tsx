@@ -43,23 +43,23 @@ export default function TradeForm() {
 
     return (
         <form className="flex flex-col gap-6">
-            <input name="ticker" placeholder="Ticker" onChange={e => {
+            <input className="border-2 border-gray-500" name="ticker" placeholder="Ticker" onChange={e => {
                 setTradeDetail((prev) => {
                     return {...prev, ticker: e.target.value}
                 })
             }}/>
-            <div>
-                <input type="number" name="entry" placeholder="Entry" onChange={e => {
+            <div className="flex flex-row gap-1">
+                <input className="border-2 border-gray-500" type="number" name="entry" placeholder="Entry" onChange={e => {
                 setTradeDetail((prev) => {
                     return {...prev, entry: Number(e.target.value)}
                 })
             }}/>
-                <input name="exit" placeholder="Exit" onChange={e => {
+                <input className="border-2 border-gray-500" name="exit" placeholder="Exit" onChange={e => {
                 setTradeDetail((prev) => {
                     return {...prev, exit: Number(e.target.value)}
                 })
             }}/>
-                <input name="stop" placeholder="Stop" onChange={e => {
+                <input className="border-2 border-gray-500" name="stop" placeholder="Stop" onChange={e => {
                 setTradeDetail((prev) => {
                     return {...prev, stop: Number(e.target.value)}
                 })
@@ -117,14 +117,14 @@ export default function TradeForm() {
                     </select>
                 </label>
             </div>
-            <textarea name="notes" placeholder="Notes"  onChange={e => {
+            <textarea className="border-2 border-gray-500" name="notes" placeholder="Notes"  onChange={e => {
                 setTradeDetail((prev) => {
                     return {...prev, notes: e.target.value}
                 })
             }}/>
             <div className="flex flex-row gap-6">
-                <button onClick={e => {e.preventDefault(); newTrade()}}>Submit</button>
-                <button onClick={(e) => {clearForm()}}>Clear</button>
+                <button className="bg-blue-600 w-2/4 rounded-xs" onClick={e => {e.preventDefault(); newTrade()}}>Submit</button>
+                <button className="bg-gray-500 w-2/4 rounded-xs" onClick={(e) => {clearForm()}}>Clear</button>
             </div>
 
         </form>
